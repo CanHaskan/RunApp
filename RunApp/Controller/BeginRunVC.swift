@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BeginRunVC.swift
 //  RunApp
 //
 //  Created by Can Haskan on 18.11.2025.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BeginRunVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
