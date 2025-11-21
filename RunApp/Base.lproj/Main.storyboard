@@ -163,13 +163,16 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="startRunningButton"/>
                                 <connections>
-                                    <segue destination="egh-Pl-6KL" kind="show" id="EGJ-kq-TVc"/>
+                                    <segue destination="egh-Pl-6KL" kind="show" id="q5h-3a-LQu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0me-Rv-sie">
                                 <rect key="frame" x="306" y="485" width="82" height="72"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="centerNavButton" title=""/>
+                                <connections>
+                                    <action selector="locationCenterBtnPressed:" destination="K9l-uN-unk" eventType="touchUpInside" id="Yhy-3o-naN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bdP-lg-nLL"/>
@@ -194,15 +197,18 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Run" image="tabbar-runIconGray" id="KNn-Gn-aqj"/>
+                    <connections>
+                        <outlet property="mapView" destination="MES-JF-CDV" id="KO1-jR-t1a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVV-DA-vmw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="501.52671755725191" y="-187.32394366197184"/>
         </scene>
-        <!--View Controller-->
+        <!--Current RunVC-->
         <scene sceneID="xNa-Cc-e4j">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="egh-Pl-6KL" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="egh-Pl-6KL" customClass="CurrentRunVC" customModule="RunApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="44U-r2-J78">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -217,6 +223,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Run" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-gy-T0N">
                                 <rect key="frame" x="153.33333333333334" y="60.000000000000007" width="86.666666666666657" height="28.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END RUN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPF-w2-gBv">
+                                <rect key="frame" x="141" y="727" width="105" height="27"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -284,16 +296,13 @@
                                 <rect key="frame" x="260" y="696" width="99" height="89"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="pauseButton"/>
+                                <connections>
+                                    <action selector="pauseBtnPressed:" destination="egh-Pl-6KL" eventType="touchUpInside" id="oaa-Kv-kp2"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="endRunButton" translatesAutoresizingMaskIntoConstraints="NO" id="hRQ-Df-qe3">
                                 <rect key="frame" x="73.666666666666671" y="712" width="57.000000000000014" height="57"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END RUN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPF-w2-gBv">
-                                <rect key="frame" x="141" y="727" width="105" height="27"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QkO-P9-QsN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -326,6 +335,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="Hii-UH-xkJ"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="distanceLbl" destination="UwF-zh-P2H" id="YDy-yF-gZJ"/>
+                        <outlet property="duationLbl" destination="EHk-VA-uER" id="Mi6-7A-wn8"/>
+                        <outlet property="paceLbl" destination="9JT-pA-ovz" id="KfX-QP-k8C"/>
+                        <outlet property="pauseBtn" destination="Mwk-vh-W25" id="QIq-4z-msB"/>
+                        <outlet property="sliderImg" destination="hRQ-Df-qe3" id="CnH-fH-wBm"/>
+                        <outlet property="swipeBGImg" destination="BCS-Vb-45a" id="cH3-cd-EgG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQQ-7B-Xti" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
