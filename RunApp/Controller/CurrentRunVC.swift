@@ -12,15 +12,18 @@ class CurrentRunVC: LocationVC {
     
     @IBOutlet weak var swipeBGImg: UIImageView!
     @IBOutlet weak var sliderImg: UIImageView!
-    @IBOutlet weak var duationLbl: UILabel!
+    @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var paceLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var pauseBtn: UIButton!
     
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
+    var timer = Timer()
     
     var runDistance = 0.0
+    var pace = 0
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +42,27 @@ class CurrentRunVC: LocationVC {
     
     func startRun() {
         manager?.startUpdatingLocation()
+        startTimer()
     }
     
     func endRun() {
         manager?.stopUpdatingLocation()
+    }
+    
+    func startTimer() {
+        durationLbl.text = counter.formatTimeDurationToString()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func updateCounter() {
+        counter += 1
+        durationLbl.text = counter.formatTimeDurationToString()
+    }
+    
+    func calculatePace(time seconds: Int, meters: Double) -> Int {
+        pace = Int( (meters / Double(seconds) * 3.6))
+        return pace
     }
     
     @IBAction func pauseBtnPressed(_ sender: Any) {
@@ -87,7 +107,10 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-            distanceLbl.text = "\(runDistance)"
+            distanceLbl.text = "\(runDistance.roundedNumber(to: 2))"
+            if counter > 0 && runDistance > 0 {
+                paceLbl.text = "\(calculatePace(time: counter, meters: runDistance))"
+            }
         }
         lastLocation = locations.last
     }
