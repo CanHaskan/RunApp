@@ -22,8 +22,11 @@ class CurrentRunVC: LocationVC {
     var timer = Timer()
     
     var runDistance = 0.0
-    var pace = 0
+    var speed = 0
     var counter = 0
+    
+    let resumeButton = UIImage(named: "resumeButton")
+    let pauseButton = UIImage(named: "pauseButton")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +46,20 @@ class CurrentRunVC: LocationVC {
     func startRun() {
         manager?.startUpdatingLocation()
         startTimer()
+        pauseBtn.setImage(pauseButton, for: .normal)
     }
     
     func endRun() {
         manager?.stopUpdatingLocation()
+        Run.addRunToRealm(speed: speed, distance: runDistance, duration: counter)
+    }
+    
+    func pauseRun() {
+        startLocation = nil
+        lastLocation = nil
+        timer.invalidate()
+        manager?.stopUpdatingLocation()
+        pauseBtn.setImage(resumeButton, for: .normal)
     }
     
     func startTimer() {
@@ -60,12 +73,17 @@ class CurrentRunVC: LocationVC {
         durationLbl.text = counter.formatTimeDurationToString()
     }
     
-    func calculatePace(time seconds: Int, meters: Double) -> Int {
-        pace = Int( (meters / Double(seconds) * 3.6))
-        return pace
+    func calculateSpeed(time seconds: Int, meters: Double) -> Int {
+        speed = Int( (meters / Double(seconds) * 3.6))
+        return speed
     }
     
     @IBAction func pauseBtnPressed(_ sender: Any) {
+        if timer.isValid {
+            pauseRun()
+        } else {
+            startRun()
+        }
     }
     
     @objc func endRunSwiped(sender: UIPanGestureRecognizer) {
@@ -78,7 +96,7 @@ class CurrentRunVC: LocationVC {
                     sliderView.center.x = sliderView.center.x + translation.x
                 } else if sliderView.center.x >= (swipeBGImg.center.x + maxAdjust) {
                     sliderView.center.x = swipeBGImg.center.x + maxAdjust
-                    
+                    endRun()
                     dismiss(animated: true, completion: nil)
                 } else {
                     sliderView.center.x = swipeBGImg.center.x - minAdjust
@@ -109,7 +127,7 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             runDistance += lastLocation.distance(from: location)
             distanceLbl.text = "\(runDistance.roundedNumber(to: 2))"
             if counter > 0 && runDistance > 0 {
-                paceLbl.text = "\(calculatePace(time: counter, meters: runDistance))"
+                paceLbl.text = "\(calculateSpeed(time: counter, meters: runDistance))"
             }
         }
         lastLocation = locations.last

@@ -294,6 +294,11 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mwk-vh-W25">
                                 <rect key="frame" x="260" y="696" width="99" height="89"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Mwk-vh-W25" secondAttribute="height" multiplier="99:89" id="8sZ-5C-1w7"/>
+                                    <constraint firstAttribute="width" constant="99" id="GFx-To-9Pc"/>
+                                    <constraint firstAttribute="height" constant="89" id="gWZ-SS-4u4"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="pauseButton"/>
                                 <connections>
@@ -328,8 +333,8 @@
                             <constraint firstItem="XLP-x7-0qu" firstAttribute="centerY" secondItem="Zat-YX-KjS" secondAttribute="centerY" id="n4H-QA-7x8"/>
                             <constraint firstItem="Mwk-vh-W25" firstAttribute="centerY" secondItem="BCS-Vb-45a" secondAttribute="centerY" id="oB2-Q4-RHo"/>
                             <constraint firstItem="XLP-x7-0qu" firstAttribute="centerX" secondItem="Zat-YX-KjS" secondAttribute="centerX" id="qM4-k4-WAq"/>
+                            <constraint firstItem="Mwk-vh-W25" firstAttribute="leading" secondItem="vPF-w2-gBv" secondAttribute="trailing" constant="14" id="rRe-bB-J3z"/>
                             <constraint firstItem="lTP-Hr-5fE" firstAttribute="centerX" secondItem="44U-r2-J78" secondAttribute="centerX" id="sCx-QV-rtu"/>
-                            <constraint firstItem="Mwk-vh-W25" firstAttribute="leading" secondItem="BCS-Vb-45a" secondAttribute="trailing" constant="-32.666666666666629" id="t9Z-XC-QlO"/>
                             <constraint firstItem="Zat-YX-KjS" firstAttribute="leading" secondItem="QkO-P9-QsN" secondAttribute="leading" id="zUM-Yd-3KR"/>
                         </constraints>
                     </view>
