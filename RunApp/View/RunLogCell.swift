@@ -23,7 +23,7 @@ class RunLogCell: UITableViewCell {
     func configre(run: Run) {
         runDurationLbl.text = run.duration.formatTimeDurationToString()
         totalDistanceLbl.text = "\(run.distance.roundedNumber(to: 2)) km"
-        averageSpeedLbl.text = run.speed.formatTimeDurationToString()
+        averageSpeedLbl.text = "\(run.speed)"
         dateLbl.text = run.date.getDateString()
     }
 
