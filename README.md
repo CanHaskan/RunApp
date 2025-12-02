@@ -57,23 +57,23 @@ RunApp.xcodeproj
 
 ## 📸 Screenshots
 
-🟢 Begin Run
-Koşuya başlamadan önceki hazırlık ekranı.
+🟢 Begin Run (BeginRunVC)
+The screen you see before starting a run.
 
 <img src="assets/screenshots/BeginRun.png" width="220"/>
 
-🟡 Current Run
-Koşu sırasında canlı süre, mesafe ve hız bilgilerinin gösterildiği ekran.
+🟡 Current Run (CurrentRunVC)
+The preparation screen you see before starting a run.
 
 <img src="assets/screenshots/CurrentRun.png" width="220"/>
 
-🔵 Last Run
-Tamamlanan son koşunun özet ekranı.
+🔵 Last Run (This is the same VC as BeginRunVC)
+Live tracking screen showing time, distance, and speed during the run.
 
 <img src="assets/screenshots/LastRun.png" width="220"/>
 
-🟣 Run Log
-Tüm koşuların geçmişini gösteren ekran.
+🟣 Run Log (RunLogVC)
+Summary of your most recent completed run: speed, distance, duration, and date.
 
 <img src="assets/screenshots/RunLog.png" width="220"/>
 
