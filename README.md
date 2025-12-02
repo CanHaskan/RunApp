@@ -56,19 +56,11 @@ RunApp.xcodeproj
 ---
 
 ## 📸 Screenshots
-Add your screenshots in:
 
-```
-assets/screenshots/
-```
-
-And reference them here:
-
-```md
-![Home](assets/screenshots/home.png)
-![Running](assets/screenshots/running.png)
-![History](assets/screenshots/history.png)
-![Run Detail](assets/screenshots/detail.png)
+![BeginRun](assets/screenshots/BeginRun.png)
+![CurrentRun](assets/screenshots/CurrentRun.png)
+![LastRun](assets/screenshots/LastRun.png)
+![RunLog](assets/screenshots/RunLog.png)
 ```
 
 ---
