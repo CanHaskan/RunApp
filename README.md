@@ -56,18 +56,19 @@ RunApp.xcodeproj
 ---
 
 ## 📸 Screenshots
-*Begin run ekranı — kaydı başlatmak için kaydırma kontrolleri.*
-![BeginRun](assets/screenshots/BeginRun.png)  
 
-*Run sırasında canlı istatistikler (süre, mesafe, hız).*
-![CurrentRun](assets/screenshots/CurrentRun.png)  
-
-*Son koşunun özet ekranı — hız, mesafe ve rota.*
-![LastRun](assets/screenshots/LastRun.png)  
-
-*Koşu geçmişi listesi, tarihe göre sıralı.*
-![RunLog](assets/screenshots/RunLog.png)  
-
+🟢 Begin Run
+Koşuya başlamadan önceki hazırlık ekranı.
+<img src="assets/screenshots/BeginRun.png" width="300"/>
+🟡 Current Run
+Koşu sırasında canlı süre, mesafe ve hız bilgilerinin gösterildiği ekran.
+<img src="assets/screenshots/CurrentRun.png" width="300"/>
+🔵 Last Run
+Tamamlanan son koşunun özet ekranı: hız, mesafe, süre ve tarih bilgileri.
+<img src="assets/screenshots/LastRun.png" width="300"/>
+🟣 Run Log
+Uygulamada kaydedilen tüm koşuların listelendiği geçmiş ekranı.
+<img src="assets/screenshots/RunLog.png" width="300"/>
 
 ---
 
